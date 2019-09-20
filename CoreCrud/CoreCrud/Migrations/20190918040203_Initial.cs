@@ -14,7 +14,9 @@ namespace CoreCrud.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Continent = table.Column<string>(nullable: true),
+                    USDConversionrate = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {

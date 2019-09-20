@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreCrud.Migrations
 {
     [DbContext(typeof(CoreCrudContext))]
-    [Migration("20190913144655_Initial")]
+    [Migration("20190918040203_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,11 @@ namespace CoreCrud.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Continent");
+
                     b.Property<string>("Name");
+
+                    b.Property<float>("USDConversionrate");
 
                     b.HasKey("Id");
 

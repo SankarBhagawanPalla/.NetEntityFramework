@@ -19,6 +19,16 @@
                 <span asp-validation-for="Country.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Country.Continent" class="control-label"></label>
+                <input asp-for="Country.Continent" class="form-control" />
+                <span asp-validation-for="Country.Continent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country.USDConversionrate" class="control-label"></label>
+                <input asp-for="Country.USDConversionrate" class="form-control" />
+                <span asp-validation-for="Country.USDConversionrate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

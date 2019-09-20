@@ -1,0 +1,83 @@
+﻿@page
+@model CoreCrud.Pages.QuickGlanceModel
+@{
+    ViewData["Title"] = "QuickGlance";
+}
+
+<h1>QuickGlance</h1>
+</br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Country</th>
+            <th scope="col">Destination Name</th>
+            <th scope="col">TravelDate</th>
+            <th scope="col">IsFlightServiceAvailable</th>
+            <th scope="col">TotalFair</th>
+            <th scope="col">Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dest in Model.Destinations)
+        {
+        <tr>
+            @if (@dest.Location.Name == "India")
+            {
+                <td>@dest.Location.Name <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" height="25" width="25"></td>
+            }
+            @if (@dest.Location.Name == "United States")
+            {
+                <td>@dest.Location.Name <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" height="25" width="25"></td>
+            }
+            @if (@dest.Location.Name == "Russia")
+            {
+                <td>@dest.Location.Name <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg" height="25" width="25"></td>
+            }
+            @if (@dest.Location.Name == "Australia")
+            {
+                <td>@dest.Location.Name <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" height="25" width="25"></td>
+            }
+            <td>@dest.Name</td>
+            <td>@dest.TravelDate</td>
+            <td>@dest.IsFlightServiceAvailable</td>
+            <td>@dest.TotalFair</td>
+            @if (@dest.Rating == 1)
+            {
+                <td>
+                    <span class="badge badge-pill badge-danger">Exorbitant</span>
+                </td>
+            }
+            @if (@dest.Rating == 2)
+            {
+                <td>
+                    <span class="badge badge-pill badge-warning">Expensive</span>
+                </td>
+            }
+            @if (@dest.Rating == 3)
+            {
+                <td>
+                    <span class="badge badge-pill badge-dark">Reasonable</span>
+                </td>
+            }
+            @if (@dest.Rating == 4)
+            {
+                <td>
+                    <span class="badge badge-pill badge-primary">Fair Deal</span>
+                </td>
+            }
+            @if (@dest.Rating == 5)
+            {
+                <td>
+                    <span class="badge badge-pill badge-success">Economical</span>
+                </td>
+            }
+            @if (@dest.Rating == 0)
+            {
+                <td>
+                    <span class="badge badge-pill badge-info">Unknown</span>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

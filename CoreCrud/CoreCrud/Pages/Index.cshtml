@@ -25,7 +25,91 @@
             </ul>
             <img style="width:700px;height:340px;" src="https://thumbnails.trvl-media.com/9lz74LdJIbkdIOyxFAQVpal90EE=/768x432/images.trvl-media.com/media/content/shared/images/travelguides/destination/602904/Virginia-Beach-N-135180.jpg" alt="Logo of a Vacation" />
         </div>
-        <h2>Trending Destinations</h2>
-        <img style="width:170px;height:170px;" src="https://mediad.publicbroadcasting.net/p/wyso/files/styles/x_large/public/201802/Favicon.png" alt="Logo of a Ohio" />
+        <h3>Country Profile Links</h3>
+        <a href="http://localhost:53538/countryprofile?id=1">India Country Profile</a></br>
+        <a href="http://localhost:53538/countryprofile?id=2">United States Country Profile</a></br>
+        <a href="http://localhost:53538/countryprofile?id=3">Russia Country Profile</a></br>
+        <a href="http://localhost:53538/countryprofile?id=4">Australia Country Profile</a></br>
+        </br>
+            <h3><span style="color:royalblue ; width:100px">Country and Destinations Statistics</span></h3>
+            <table class="table table-striped" style="float: left;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Country</th>
+                        <th scope="col">No. of Destinations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in @Model.DestCount)
+                    {
+                        <tr>
+                            <td>@i.Key.Name</td>
+                            <td>@i.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h3><span style="color:royalblue ; width:100px">Flight Service Unavailable Destinations Statistics</span></h3>
+            <table class="table table-striped" >
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Flight Service</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dest in @Model.FlightServiceUnavailableDestinations)
+                    {
+                        <tr>
+                            <td>@dest.Name</td>
+                            <td>@dest.Location.Name</td>
+                            <td>@dest.IsFlightServiceAvailable</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h3><span style="color:royalblue ; width:100px">Expensive Destinations Statistics</span></h3>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Total Fair</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dest in @Model.ExpensiveDestinations)
+                    {
+                        <tr>
+                            <td>@dest.Name</td>
+                            <td>@dest.Location.Name</td>
+                            <td>@dest.TotalFair</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h3><span style="color:royalblue ; width:100px">Destinations Planned for 2020 Statistics</span></h3>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Travel Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dest in @Model.NextYearDestinations)
+                    {
+                        <tr>
+                            <td>@dest.Name</td>
+                            <td>@dest.Location.Name</td>
+                            <td>@dest.TravelDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h2>Trending Destinations</h2>
+            <img style="width:170px;height:170px;" src="https://mediad.publicbroadcasting.net/p/wyso/files/styles/x_large/public/201802/Favicon.png" alt="Logo of a Ohio" />
     </body>
 

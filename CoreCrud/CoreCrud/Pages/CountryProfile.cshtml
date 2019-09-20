@@ -1,0 +1,67 @@
+﻿@page
+@model CoreCrud.Pages.CountryProfileModel
+@{
+    ViewData["Title"] = "CountryProfile";
+}
+
+<h1>CountryProfile: <span style="color:lightsalmon">@Model.country.Name</span></h1>
+</br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Destination Name</th>
+            <th scope="col">TravelDate</th>
+            <th scope="col">IsFlightServiceAvailable</th>
+            <th scope="col">TotalFair</th>
+            <th scope="col">Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dest in Model.country.Destinations)
+        {
+        <tr>
+            <td>@dest.Name</td>
+            <td>@dest.TravelDate</td>
+            <td>@dest.IsFlightServiceAvailable</td>
+            <td>@dest.TotalFair</td>
+
+            @if (@dest.Rating == 1)
+            {
+                <td>
+                    <span class="badge badge-pill badge-danger">Exorbitant</span>
+                </td>
+            }
+            @if (@dest.Rating == 2)
+            {
+                <td>
+                    <span class="badge badge-pill badge-warning">Expensive</span>
+                </td>
+            }
+            @if (@dest.Rating == 3)
+            {
+                <td>
+                    <span class="badge badge-pill badge-dark">Reasonable</span>
+                </td>
+            }
+            @if (@dest.Rating == 4)
+            {
+                <td>
+                    <span class="badge badge-pill badge-primary">Fair Deal</span>
+                </td>
+            }
+            @if (@dest.Rating == 5)
+            {
+                <td>
+                    <span class="badge badge-pill badge-success">Economical</span>
+                </td>
+            }
+            @if (@dest.Rating == 0)
+            {
+                <td>
+                    <span class="badge badge-pill badge-info">Unknown</span>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
