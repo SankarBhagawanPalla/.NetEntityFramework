@@ -36,7 +36,7 @@ namespace CoreCrud.Pages.Destinations
             {
                 return NotFound();
             }
-           ViewData["LocationId"] = new SelectList(_context.Country, "Id", "Id");
+           ViewData["LocationId"] = new SelectList(_context.Country, "Id", "Name");
             return Page();
         }
 

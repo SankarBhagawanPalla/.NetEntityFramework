@@ -2,16 +2,16 @@
 @model CoreCrud.Pages.Destinations.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Destinations";
 }
 
-<h1>Index</h1>
+    <h1>List of Destinations</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Destination[0].Name)
@@ -30,6 +30,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Destination[0].Location)
+            </th>
+            <th>
+                Budget Rating
             </th>
             <th></th>
         </tr>
@@ -53,8 +56,44 @@
                 @Html.DisplayFor(modelItem => item.TotalFair)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Location.Id)
+                @Html.DisplayFor(modelItem => item.Location.Name)
             </td>
+            @if (item.Rating == 1)
+            {
+                <td>
+                    <span class="badge badge-pill badge-danger">Exorbitant</span>
+                </td>
+            }
+            @if (@item.Rating == 2)
+            {
+                <td>
+                    <span class="badge badge-pill badge-warning">Expensive</span>
+                </td>
+            }
+            @if (@item.Rating == 3)
+            {
+                <td>
+                    <span class="badge badge-pill badge-dark">Reasonable</span>
+                </td>
+            }
+            @if (@item.Rating == 4)
+            {
+                <td>
+                    <span class="badge badge-pill badge-primary">Fair Deal</span>
+                </td>
+            }
+            @if (@item.Rating == 5)
+            {
+                <td>
+                    <span class="badge badge-pill badge-success">Economical</span>
+                </td>
+            }
+            @if (@item.Rating == 0)
+            {
+                <td>
+                    <span class="badge badge-pill badge-info">Unknown</span>
+                </td>
+            }
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |

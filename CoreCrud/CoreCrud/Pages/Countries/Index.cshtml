@@ -2,16 +2,16 @@
 @model CoreCrud.Pages.Countries.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Countries";
 }
 
-<h1>Index</h1>
+<h1>List of Countries</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Country[0].Name)
@@ -28,21 +28,34 @@
     <tbody>
 @foreach (var item in Model.Country) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Continent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.USDConversionrate)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+                @if (@item.Name == "India")
+                {
+                <td>@item.Name <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" height="25" width="25"></td>
+            }
+                @if (@item.Name == "United States")
+                {
+                 <td>@item.Name <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" height="25" width="25"></td>
+                }
+                @if (@item.Name == "Russia")
+                {
+                <td>@item.Name <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg" height="25" width="25"></td>
+                }
+                @if (@item.Name == "Australia")
+                {
+                 <td>@item.Name <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" height="25" width="25"></td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Continent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.USDConversionrate)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
 }
     </tbody>
 </table>

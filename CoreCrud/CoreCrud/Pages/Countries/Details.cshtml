@@ -5,16 +5,15 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Details of Country</h1>
 
 <div>
-    <h4>Country</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
+    <dl class="list-group">
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Country.Name)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Country.Name)
         </dd>
         <dt class="col-sm-2">

@@ -2,10 +2,10 @@
 @model CoreCrud.Pages.Countries.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add";
 }
 
-<h1>Create</h1>
+<h1>Add a New Country</h1>
 
 <h4>Country</h4>
 <hr />
@@ -27,6 +27,7 @@
                 <label asp-for="Country.USDConversionrate" class="control-label"></label>
                 <input asp-for="Country.USDConversionrate" class="form-control" />
                 <span asp-validation-for="Country.USDConversionrate" class="text-danger"></span>
+                <p style="color:blue">(*Consider Conversion rates on the day of booking)</p>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
