@@ -29,7 +29,7 @@ namespace LibrarySystem.Pages.BorrowedBooks
             }
 
             BorrowedBook = await _context.BorrowedBook
-                .Include(b => b.Book)
+                .Include(b => b.BookCopy.Book)
                 .Include(b => b.Member).FirstOrDefaultAsync(m => m.BorrowedBookId == id);
 
             if (BorrowedBook == null)

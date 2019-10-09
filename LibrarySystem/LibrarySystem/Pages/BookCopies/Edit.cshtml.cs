@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LibrarySystem.Models;
 
-namespace LibrarySystem.Pages.Books
+namespace LibrarySystem.Pages.BookCopies
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace LibrarySystem.Pages.Books
         }
 
         [BindProperty]
-        public Book Book { get; set; }
+        public BookCopy BookCopy { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,12 +29,14 @@ namespace LibrarySystem.Pages.Books
                 return NotFound();
             }
 
-            Book = await _context.Book.FirstOrDefaultAsync(m => m.BookId == id);
+            BookCopy = await _context.BookCopy
+                .Include(b => b.Book).FirstOrDefaultAsync(m => m.BookCopyId == id);
 
-            if (Book == null)
+            if (BookCopy == null)
             {
                 return NotFound();
             }
+           ViewData["BookId"] = new SelectList(_context.Book, "BookId", "Name");
             return Page();
         }
 
@@ -45,7 +47,7 @@ namespace LibrarySystem.Pages.Books
                 return Page();
             }
 
-            _context.Attach(Book).State = EntityState.Modified;
+            _context.Attach(BookCopy).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +55,7 @@ namespace LibrarySystem.Pages.Books
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(Book.BookId))
+                if (!BookCopyExists(BookCopy.BookCopyId))
                 {
                     return NotFound();
                 }
@@ -66,9 +68,9 @@ namespace LibrarySystem.Pages.Books
             return RedirectToPage("./Index");
         }
 
-        private bool BookExists(int id)
+        private bool BookCopyExists(int id)
         {
-            return _context.Book.Any(e => e.BookId == id);
+            return _context.BookCopy.Any(e => e.BookCopyId == id);
         }
     }
 }

@@ -19,5 +19,7 @@ namespace LibrarySystem.Models
         public DbSet<LibrarySystem.Models.Member> Member { get; set; }
 
         public DbSet<LibrarySystem.Models.BorrowedBook> BorrowedBook { get; set; }
+
+        public DbSet<LibrarySystem.Models.BookCopy> BookCopy { get; set; }
     }
 }

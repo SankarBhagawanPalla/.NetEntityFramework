@@ -29,7 +29,7 @@ namespace LibrarySystem.Pages.Members
                 return NotFound();
             }
 
-            Member = await _context.Member.FirstOrDefaultAsync(m => m.Id == id);
+            Member = await _context.Member.FirstOrDefaultAsync(m => m.MemberId == id);
 
             if (Member == null)
             {
@@ -53,7 +53,7 @@ namespace LibrarySystem.Pages.Members
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MemberExists(Member.Id))
+                if (!MemberExists(Member.MemberId))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace LibrarySystem.Pages.Members
 
         private bool MemberExists(int id)
         {
-            return _context.Member.Any(e => e.Id == id);
+            return _context.Member.Any(e => e.MemberId == id);
         }
     }
 }

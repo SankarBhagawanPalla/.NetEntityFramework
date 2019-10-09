@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using LibrarySystem.Models;
 
-namespace LibrarySystem.Pages.Members
+namespace LibrarySystem.Pages.BookCopies
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace LibrarySystem.Pages.Members
         }
 
         [BindProperty]
-        public Member Member { get; set; }
+        public BookCopy BookCopy { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,10 @@ namespace LibrarySystem.Pages.Members
                 return NotFound();
             }
 
-            Member = await _context.Member.FirstOrDefaultAsync(m => m.MemberId == id);
+            BookCopy = await _context.BookCopy
+                .Include(b => b.Book).FirstOrDefaultAsync(m => m.BookCopyId == id);
 
-            if (Member == null)
+            if (BookCopy == null)
             {
                 return NotFound();
             }
@@ -44,11 +45,11 @@ namespace LibrarySystem.Pages.Members
                 return NotFound();
             }
 
-            Member = await _context.Member.FindAsync(id);
+            BookCopy = await _context.BookCopy.FindAsync(id);
 
-            if (Member != null)
+            if (BookCopy != null)
             {
-                _context.Member.Remove(Member);
+                _context.BookCopy.Remove(BookCopy);
                 await _context.SaveChangesAsync();
             }
 

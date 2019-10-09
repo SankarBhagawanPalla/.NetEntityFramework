@@ -27,7 +27,7 @@ namespace LibrarySystem.Pages.Members
                 return NotFound();
             }
 
-            Member = await _context.Member.FirstOrDefaultAsync(m => m.Id == id);
+            Member = await _context.Member.FirstOrDefaultAsync(m => m.MemberId == id);
 
             if (Member == null)
             {

@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Member[0].IDNumber)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Member[0].FirstName)
             </th>
             <th>
@@ -23,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Member[0].Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Member[0].Category)
+                @Html.DisplayNameFor(model => model.Member[0].Department)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Member[0].DateOfBirth)
@@ -38,6 +41,9 @@
 @foreach (var item in Model.Member) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.IDNumber)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
             <td>
@@ -47,7 +53,7 @@
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category)
+                @Html.DisplayFor(modelItem => item.Department)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfBirth)
@@ -56,9 +62,9 @@
                 @Html.DisplayFor(modelItem => item.EmailAddress)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.MemberId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.MemberId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.MemberId">Delete</a>
             </td>
         </tr>
 }

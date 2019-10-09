@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using LibrarySystem.Models;
 
-namespace LibrarySystem.Pages.BorrowedBooks
+namespace LibrarySystem.Pages.BookCopies
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace LibrarySystem.Pages.BorrowedBooks
             _context = context;
         }
 
-        public BorrowedBook BorrowedBook { get; set; }
+        public BookCopy BookCopy { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,11 +27,10 @@ namespace LibrarySystem.Pages.BorrowedBooks
                 return NotFound();
             }
 
-            BorrowedBook = await _context.BorrowedBook
-                .Include(b => b.BookCopy.Book)
-                .Include(b => b.Member).FirstOrDefaultAsync(m => m.BorrowedBookId == id);
+            BookCopy = await _context.BookCopy
+                .Include(b => b.Book).FirstOrDefaultAsync(m => m.BookCopyId == id);
 
-            if (BorrowedBook == null)
+            if (BookCopy == null)
             {
                 return NotFound();
             }

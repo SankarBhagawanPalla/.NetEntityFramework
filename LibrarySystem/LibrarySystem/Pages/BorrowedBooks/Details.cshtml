@@ -12,28 +12,34 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BorrowedBook.Book)
+            @Html.DisplayNameFor(model => model.BorrowedBook.Member.IDNumber)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BorrowedBook.Book.Id)
+            @Html.DisplayFor(model => model.BorrowedBook.Member.IDNumber)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BorrowedBook.Member)
+            Full Name
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BorrowedBook.Member.Id)
+            @Html.DisplayFor(model => model.BorrowedBook.Member.FirstName) @Html.DisplayFor(model => model.BorrowedBook.Member.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BorrowedBook.BookCopy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BorrowedBook.BookCopy.BookCopyId)
+        </dd>
+        <dt class="col-sm-2">
+            Book Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BorrowedBook.BookCopy.Book.Name)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BorrowedBook.BorrowedDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.BorrowedBook.BorrowedDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BorrowedBook.ReturnDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BorrowedBook.ReturnDate)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BorrowedBook.ActualReturnDate)

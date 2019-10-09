@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibrarySystem.Migrations
 {
     [DbContext(typeof(LibrarySystemContext))]
-    [Migration("20191004223517_InitialCreate")]
+    [Migration("20191009223124_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,25 +23,46 @@ namespace LibrarySystem.Migrations
 
             modelBuilder.Entity("LibrarySystem.Models.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Author");
+                    b.Property<string>("Author")
+                        .IsRequired();
 
-                    b.Property<DateTime>("DateOfArrival");
+                    b.Property<string>("Description")
+                        .HasMaxLength(100);
 
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Name");
-
-                    b.Property<long>("Price");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("Type");
 
-                    b.HasKey("Id");
+                    b.HasKey("BookId");
 
                     b.ToTable("Book");
+                });
+
+            modelBuilder.Entity("LibrarySystem.Models.BookCopy", b =>
+                {
+                    b.Property<int>("BookCopyId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BookAisleLocation")
+                        .IsRequired();
+
+                    b.Property<int>("BookId");
+
+                    b.Property<DateTime>("DateOfArrival");
+
+                    b.Property<long>("Price");
+
+                    b.HasKey("BookCopyId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BookCopy");
                 });
 
             modelBuilder.Entity("LibrarySystem.Models.BorrowedBook", b =>
@@ -52,17 +73,15 @@ namespace LibrarySystem.Migrations
 
                     b.Property<DateTime?>("ActualReturnDate");
 
-                    b.Property<int>("BookId");
+                    b.Property<int>("BookCopyId");
 
-                    b.Property<DateTime?>("BorrowedDate");
+                    b.Property<DateTime>("BorrowedDate");
 
                     b.Property<int>("MemberId");
 
-                    b.Property<DateTime?>("ReturnDate");
-
                     b.HasKey("BorrowedBookId");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("BookCopyId");
 
                     b.HasIndex("MemberId");
 
@@ -71,36 +90,53 @@ namespace LibrarySystem.Migrations
 
             modelBuilder.Entity("LibrarySystem.Models.Member", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MemberId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category");
-
                     b.Property<DateTime>("DateOfBirth");
 
-                    b.Property<string>("EmailAddress");
+                    b.Property<string>("Department");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("EmailAddress")
+                        .IsRequired();
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("IDNumber")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<string>("Type");
 
-                    b.HasKey("Id");
+                    b.HasKey("MemberId");
 
                     b.ToTable("Member");
                 });
 
-            modelBuilder.Entity("LibrarySystem.Models.BorrowedBook", b =>
+            modelBuilder.Entity("LibrarySystem.Models.BookCopy", b =>
                 {
                     b.HasOne("LibrarySystem.Models.Book", "Book")
-                        .WithMany()
+                        .WithMany("BookCopies")
                         .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("LibrarySystem.Models.BorrowedBook", b =>
+                {
+                    b.HasOne("LibrarySystem.Models.BookCopy", "BookCopy")
+                        .WithMany("borrowedBooks")
+                        .HasForeignKey("BookCopyId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("LibrarySystem.Models.Member", "Member")
-                        .WithMany()
+                        .WithMany("BorrowedBooks")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -27,7 +27,7 @@ namespace LibrarySystem.Pages.Books
                 return NotFound();
             }
 
-            Book = await _context.Book.FirstOrDefaultAsync(m => m.Id == id);
+            Book = await _context.Book.FirstOrDefaultAsync(m => m.BookId == id);
 
             if (Book == null)
             {

@@ -1,0 +1,33 @@
+﻿@page
+@model LibrarySystem.Pages.MemberandBorrowedBooksModel
+@{
+    ViewData["Title"] = "MemberandBorrowedBooks";
+}
+
+<h1>MemberandBorrowedBooks</h1>
+</br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Member</th>
+            <th scope="col">Borrowed Book Name</th>
+            <th scope="col">Borrowed date</th>
+            <th scope="col">Returndate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mem in Model.Members)
+        {
+        <tr>
+            <td>@mem.FirstName</td>
+            @foreach (var bo in mem.BorrowedBooks)
+            {
+                <td>@bo.BookCopy.Book.Name</td>
+        <td>@bo.BorrowedDate</td>
+        <td>@bo.ReturnDate</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+

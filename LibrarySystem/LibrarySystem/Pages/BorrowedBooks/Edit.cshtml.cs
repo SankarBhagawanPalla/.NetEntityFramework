@@ -30,15 +30,15 @@ namespace LibrarySystem.Pages.BorrowedBooks
             }
 
             BorrowedBook = await _context.BorrowedBook
-                .Include(b => b.Book)
+                .Include(b => b.BookCopy)
                 .Include(b => b.Member).FirstOrDefaultAsync(m => m.BorrowedBookId == id);
 
             if (BorrowedBook == null)
             {
                 return NotFound();
             }
-           ViewData["BookId"] = new SelectList(_context.Book, "Id", "Id");
-           ViewData["MemberId"] = new SelectList(_context.Member, "Id", "Id");
+           ViewData["BookCopyId"] = new SelectList(_context.BookCopy, "BookCopyId", "BookCopyId");
+           ViewData["MemberId"] = new SelectList(_context.Member, "MemberId", "IDNumber");
             return Page();
         }
 

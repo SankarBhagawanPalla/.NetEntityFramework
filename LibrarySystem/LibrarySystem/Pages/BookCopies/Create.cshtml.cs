@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using LibrarySystem.Models;
 
-namespace LibrarySystem.Pages.BorrowedBooks
+namespace LibrarySystem.Pages.BookCopies
 {
     public class CreateModel : PageModel
     {
@@ -20,13 +20,12 @@ namespace LibrarySystem.Pages.BorrowedBooks
 
         public IActionResult OnGet()
         {
-        ViewData["BookCopyId"] = new SelectList(_context.BookCopy, "BookCopyId", "BookCopyId");
-        ViewData["MemberId"] = new SelectList(_context.Member, "MemberId", "IDNumber");
+        ViewData["BookId"] = new SelectList(_context.Book, "BookId", "Name");
             return Page();
         }
 
         [BindProperty]
-        public BorrowedBook BorrowedBook { get; set; }
+        public BookCopy BookCopy { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -35,7 +34,7 @@ namespace LibrarySystem.Pages.BorrowedBooks
                 return Page();
             }
 
-            _context.BorrowedBook.Add(BorrowedBook);
+            _context.BookCopy.Add(BookCopy);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

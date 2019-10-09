@@ -1,0 +1,60 @@
+﻿@page
+@model LibrarySystem.Pages.BookCopies.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCopy[0].Book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCopy[0].BookCopyId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCopy[0].DateOfArrival)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCopy[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCopy[0].BookAisleLocation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.BookCopy) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookCopyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfArrival)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookAisleLocation)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.BookCopyId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BookCopyId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BookCopyId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
