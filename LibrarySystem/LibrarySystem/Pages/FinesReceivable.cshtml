@@ -1,0 +1,37 @@
+﻿@page
+@model LibrarySystem.Pages.FinesReceivableModel
+@{
+    ViewData["Title"] = "FinesReceivable";
+}
+
+<h1>Fines Receivable</h1>
+</br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Borrower ID</th>
+            <th scope="col">Borrower Name</th>
+            <th scope="col">Borrowed Book</th>
+            <th scope="col">Copy ID</th>
+            <th scope="col">Borrowed date</th>
+            <th scope="col">Designated Return date</th>
+            <th scope="col">Fine</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bb in Model.Borrowedbooks)
+        {
+        <tr>
+            <td>@bb.Member.IDNumber</td>
+            <td>@bb.Member.FirstName @bb.Member.LastName</td>
+            <td>@bb.BookCopy.Book.Name</td>
+            <td>@bb.BookCopy.BookCopyId</td>
+            <td>@bb.BorrowedDate</td>
+            <td>@bb.ReturnDate</td>
+            <td><span class="badge badge-pill badge-danger">@bb.Fine</span></td>
+
+        </tr>
+         }
+    </tbody>
+</table>
+

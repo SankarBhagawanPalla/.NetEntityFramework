@@ -26,6 +26,7 @@ namespace LibrarySystem.Pages
                                    .ThenInclude(bb => bb.BookCopy)
                                    .ThenInclude(bc => bc.Book)
                                    .ToList();
+            
 
             //var book = _context.Book
             //                    .Include(b => b.BookCopies)

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using LibrarySystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibrarySystem.Pages.BorrowedBooks
 {
@@ -17,11 +18,14 @@ namespace LibrarySystem.Pages.BorrowedBooks
         {
             _context = context;
         }
-
+        public ICollection<BookCopy> BookCopies { get; set; }
         public IActionResult OnGet()
         {
-        ViewData["BookCopyId"] = new SelectList(_context.BookCopy, "BookCopyId", "BookCopyId");
-        ViewData["MemberId"] = new SelectList(_context.Member, "MemberId", "IDNumber");
+            /*BookCopies = _context.BookCopy.Include(bc => bc.borrowedBooks).FromSql("SELECT * FROM BookCopy").ToList();*/
+            BookCopies = _context.BookCopy.Include(bc => bc.borrowedBooks).ToList();
+            /*BookCopies = _context.BookCopy.SqlQuery("SELECT * FROM dbo.Blogs").ToList();*/
+            ViewData["BookCopyId"] = new SelectList(BookCopies, "BookCopyId", "BookCopyId");
+            ViewData["MemberId"] = new SelectList(_context.Member, "MemberId", "IDNumber");
             return Page();
         }
 

@@ -1,0 +1,41 @@
+﻿@page
+@model LibrarySystem.Pages.BookandCopiesModel
+@{
+    ViewData["Title"] = "BookandCopies";
+}
+
+<h1>Book and Copies</h1>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Book Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Type</th>
+            <th scope="col">Copy ID</th>
+            <th scope="col">Date of Arrival</th>
+            <th scope="col">Price</th>
+            <th scope="col">Aisle Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            int n = book.BookCopies.Count + 1;
+        <tr>
+            <td rowspan=@n>@book.Name</td>
+            <td rowspan=@n>@book.Author</td>
+            <td rowspan=@n>@book.Type</td>
+            @foreach (var bc in book.BookCopies)
+            {
+<tr>
+                    <td>@bc.BookCopyId</td>
+                    <td>@bc.DateOfArrival</td>
+                    <td>@bc.Price</td>
+                    <td>@bc.BookAisleLocation</td>
+                </tr>
+            }
+                </tr>
+            }
+    </tbody>
+</table>
+

@@ -1,0 +1,60 @@
+﻿@page
+@model LibrarySystem.Pages.MemberSearchModel
+@{
+    ViewData["Title"] = "MemberSearch";
+}
+
+<h1>MemberSearch</h1>
+<form action="" method="POST" style="margin-top: 50px;">
+    <div class="form-group">
+        <label class="control-label" for="search">Member Name</label>
+        <input type="text" class="form-control" name="search" id="search" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Member Search" class="btn btn-primary" />
+    </div>
+</form>
+
+@if (Model.SearchCompleted)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>List of members</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.SearchResults.Count > 0)
+            {
+                @foreach (var Member in Model.SearchResults)
+                {
+            <tr>
+                <td>
+                    <a asp-page="Members/Details" asp-route-id="@Member.MemberId">@Member.FirstName @Member.LastName</a> 
+                </td>
+            </tr>
+
+
+                }
+            }
+            else
+            {
+                <tr class="danger">
+                    <td colspan="4" class="text-center">
+                        No results found for term "@Model.search"
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        <p>
+            Enter the search terms into the box and click <strong>Search Borrowal History</strong>
+        </p>
+    </div>
+}
+

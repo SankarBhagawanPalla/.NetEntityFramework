@@ -4,13 +4,15 @@
     ViewData["Title"] = "MemberandBorrowedBooks";
 }
 
-<h1>MemberandBorrowedBooks</h1>
+<h1>Members and Borrowed Books</h1>
 </br>
 <table class="table table-striped">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Member</th>
+            <th scope="col">Member ID</th>
+            <th scope="col">Full Name</th>
             <th scope="col">Borrowed Book Name</th>
+            <th scope="col">Copy ID</th>
             <th scope="col">Borrowed date</th>
             <th scope="col">Returndate</th>
         </tr>
@@ -18,13 +20,18 @@
     <tbody>
         @foreach (var mem in Model.Members)
         {
+            int n = mem.BorrowedBooks.Count + 1;
         <tr>
-            <td>@mem.FirstName</td>
+            <td rowspan=@n>@mem.IDNumber</td>
+            <td rowspan=@n>@mem.FirstName @mem.LastName</td>
             @foreach (var bo in mem.BorrowedBooks)
             {
+                <tr>
                 <td>@bo.BookCopy.Book.Name</td>
-        <td>@bo.BorrowedDate</td>
-        <td>@bo.ReturnDate</td>
+                <td>@bo.BookCopy.BookCopyId</td>
+                <td>@bo.BorrowedDate</td>
+                <td>@bo.ReturnDate</td>
+                </tr>
             }
         </tr>
         }

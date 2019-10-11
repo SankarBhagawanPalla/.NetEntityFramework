@@ -1,0 +1,80 @@
+﻿@page
+@model LibrarySystem.Pages.BookBorrowalHistoryModel
+@{
+    ViewData["Title"] = "Book Borrowal History";
+}
+
+<h1>BookBorrowalHistory</h1>
+
+<form action="" method="POST" style="margin-top: 50px;">
+    <div class="form-group">
+        <label class="control-label" for="search">Book Name</label>
+        <input type="text" class="form-control" name="search" id="search" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search Borrowal History" class="btn btn-primary" />
+    </div>
+</form>
+
+@if (Model.SearchCompleted)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Borrowed Copy ID</th>
+                <th>Borrowed ID</th>
+                <th>Borrowed Member</th>
+                <th>Borrowed Date</th>
+                <th>Actual Return Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.SearchResults.Count > 0)
+            {
+                @foreach (var Book in Model.SearchResults)
+                {
+                    @foreach (var BookCopy in Book.BookCopies)
+                    {
+
+                        @foreach (var BorrowedBook in BookCopy.borrowedBooks)
+                        {
+                            <tr>
+                            <td>@Book.Name</td>
+                            <td>@BookCopy.BookCopyId</td>
+                            <td>@BorrowedBook.Member.IDNumber</td>
+                            <td>@BorrowedBook.Member.FirstName @BorrowedBook.Member.LastName</td>
+                            <td>@BorrowedBook.BorrowedDate</td>
+                            <td>@BorrowedBook.ActualReturnDate</td>
+                            <td>
+                                <a asp-page="/BorrowedBooks/Details" asp-route-id="@BorrowedBook.BorrowedBookId">More Information</a>
+                            </td>
+                            </tr>
+
+                        }
+
+                    }
+
+                    
+                }
+            }
+            else
+            {
+                <tr class="danger">
+                    <td colspan="4" class="text-center">
+                        No results found for term "@Model.search"
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        <p>
+            Enter the search terms into the box and click <strong>Search Borrowal History</strong>
+        </p>
+    </div>
+}

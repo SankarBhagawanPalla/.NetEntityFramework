@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace LibrarySystem.Models
         /*Relationships*/
         public int MemberId { get; set; }
         public Member Member { get; set; }
+        /*[CustomValidation(typeof(BorrowedBook), "ValidateBookCopy")]*/
         public int BookCopyId { get; set; }
+        
         public BookCopy BookCopy { get; set; }
 
         [Required(ErrorMessage = "Borrowed date is mandatory")]
@@ -56,5 +59,17 @@ namespace LibrarySystem.Models
             }
             return new ValidationResult(errorMessage: $"Actual Return date cannot be before borrowed date");
         }
+        /*public static ValidationResult ValidateBookCopy(BookCopy bookCopy, ValidationContext context)
+        {
+            var dbContext = context.GetService(typeof(LibrarySystemContext)) as LibrarySystemContext;
+            var instance = context.ObjectInstance as BorrowedBook;
+            int duplicatecount = dbContext.BorrowedBook
+                                          .Count( x=> x.BookCopyId == instance.BookCopyId && x.ActualReturnDate== null);
+            if (duplicatecount > 0)
+            {
+                return new ValidationResult($"Book Copy already borrowed");
+            }
+            return ValidationResult.Success;
+        }*/
     }
 }
