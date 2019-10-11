@@ -17,12 +17,19 @@ namespace LibrarySystem.Pages
             _context = context;
         }
         public ICollection<BorrowedBook> Borrowedbooks { get; set; }
+        public ICollection<Book> Books { get; set; }
+        public ICollection<BookCopy> BookCopies { get; set; }
+        public ICollection<Member> Members { get; set; }
+
+
         public void OnGet()
         {
-            Borrowedbooks = _context.BorrowedBook
-                                           .Where(x => x.BorrowedDate > new DateTime(2019, 1, 1, 0, 0, 0)
-                                           .ToList();
-                                            
+            Borrowedbooks = _context.BorrowedBook.ToList();
+            Books = _context.Book.ToList();
+            BookCopies = _context.BookCopy.ToList();
+            Members = _context.Member.ToList();
+
+
 
         }
     }

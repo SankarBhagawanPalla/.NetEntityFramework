@@ -6,14 +6,39 @@
 
     <div class="text-center">
         <h1 class="display-4">Welcome to Mindfulnest!</h1>
-       <hr>
-        <table align="right">
-            <tr>
-                <td>
-                    <img src="https://qph.fs.quoracdn.net/main-qimg-9a10f2785cdbaa3567b0bad7b2524e22.webp" alt="Aisle of books" align="middle">
-                </td>
+        <hr>
+        <p>
+            It is an old saying that knowledge increases by sharing it with others. We, Mindfulnest fully agree with this proverb and are
+            here to improve you quality of life by providing some of the most thought provoking books you can get your hands on!
+        </p>
+        <img src="https://qph.fs.quoracdn.net/main-qimg-9a10f2785cdbaa3567b0bad7b2524e22.webp" alt="Aisle of books" align="middle" width="800px">
+    </div>
+</br>
+    <div class="text-center">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th colspan="2">Statistics</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Books Borrowed in 2019</th>
+                    <td>@Model.Borrowedbooks.Count</td>
+                </tr>
+                <tr>
+                    <th>Total Customers</th>
+                    <td>@Model.Members.Count</td>
+                </tr>
+                <tr>
+                    <th>Different books available</th>
+                    <td>@Model.Books.Count</td>
+                </tr>
+                <tr>
+                    <th>Total books available</th>
+                    <td>@Model.BookCopies.Count</td>
+                </tr>
+            </tbody>
 
-            </tr>
-            </table>
-            <p>It is an old saying that knowledge increases by sharing it with others. We, Mindfulnest fully agree with this proverb and are here to improve you quality of life by providing some of the most thought provoking books you can get your hands on! </p>
+        </table>
     </div>

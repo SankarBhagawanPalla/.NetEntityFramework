@@ -19,7 +19,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Mindfulnest</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -31,6 +31,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/About">About us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/MemberandBorrowedBooks">Member borrowals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/FinesReceivable">Fines receivable</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/BookandCopies">Books and Copies</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-dark dropdown-toggle" asp-area="" data-toggle="dropdown">Admin</a>
                             <ul class="dropdown-menu">
@@ -38,6 +47,8 @@
                                 <li><a class="nav-link text-dark" asp-area="" asp-page="/BookCopies/Index">Copies Directory</a></li>
                                 <li><a class="nav-link text-dark" asp-area="" asp-page="/BorrowedBooks/Index">Borrowed Books</a></li>
                                 <li> <a class="nav-link text-dark" asp-area="" asp-page="/Members/Index">Member Directory</a></li>
+                                <li> <a class="nav-link text-dark" asp-area="" asp-page="/MemberSearch">Member Search</a></li>
+                                <li> <a class="nav-link text-dark" asp-area="" asp-page="/BookBorrowalHistory">Book Borrowal History</a></li>
                             </ul>
                         </li>
                     </ul>
