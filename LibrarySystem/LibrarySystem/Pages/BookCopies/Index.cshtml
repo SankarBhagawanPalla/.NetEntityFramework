@@ -2,13 +2,13 @@
 @model LibrarySystem.Pages.BookCopies.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List of Book Copies";
 }
 
-<h1>Index</h1>
+<h1>List of Book Copies</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Add a book copy</a>
 </p>
 <table class="table">
     <thead>
@@ -50,9 +50,9 @@
                 @Html.DisplayFor(modelItem => item.BookAisleLocation)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.BookCopyId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BookCopyId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BookCopyId">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.BookCopyId">Edit book copy</a> |
+                <a asp-page="./Details" asp-route-id="@item.BookCopyId">Details of book copies</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BookCopyId">Remove book copies</a>
             </td>
         </tr>
 }
