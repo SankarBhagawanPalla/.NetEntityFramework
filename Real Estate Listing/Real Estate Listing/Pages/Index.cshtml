@@ -56,7 +56,7 @@
             $("#details").on('click', 'a.property-delete', function () {
 
                 var id = $(this).parent().parent().attr('property-id');
-                if (confirm("Are you sure you want to delete this book")) {
+                if (confirm("Are you sure you want to delete this property")) {
                     deleteProperty(id);
                 }
                 return false;
@@ -148,7 +148,7 @@
                 $("#address").val(""); //CLEAR ADDRESS
                 $("#createPropertyForm").toggle();
             }).fail(function (xhr, status, error) {
-                alert("There was an error saving your book");
+                alert("There was an error saving your property");
             });
         }
 
