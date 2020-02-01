@@ -1,2 +1,1 @@
-# IS7012
-.Net Entity Framework Projects
+ASP.Net Projects developed using C#, Entity framework, Bootstrap.
